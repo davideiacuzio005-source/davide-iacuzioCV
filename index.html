@@ -3,690 +3,529 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Davide Iacuzio — Tecnico Elettrico</title>
+<title>Davide Iacuzio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0F0F0E;
+  --bg1:#141413;
+  --bg2:#1A1A18;
+  --line:#252523;
+  --line2:#2E2E2B;
+  --gold:#C9973A;
+  --gold2:#8A6220;
+  --gold-dim:rgba(201,151,58,0.12);
+  --text:#D4CFCA;
+  --bright:#EDEAE5;
+  --dim:#7A7570;
+  --dimmer:#504D49;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
  
-  :root {
-    --black: #0D0D0D;
-    --white: #FAFAF8;
-    --accent: #C8952A;
-    --accent-light: #F5E9C8;
-    --gray-100: #F2F0EC;
-    --gray-300: #C5C2BB;
-    --gray-500: #888580;
-    --gray-700: #3A3835;
-    --line: 1px solid #E0DDD6;
-  }
+/* ══ HERO ══ */
+.hero{
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:0 0 72px;
+  position:relative;
+  overflow:hidden;
+}
  
-  html { scroll-behavior: smooth; }
+/* grande nome in background */
+.hero-bg-name{
+  position:absolute;
+  top:50%;left:-12px;
+  transform:translateY(-52%);
+  font-family:'Fraunces',serif;
+  font-size:clamp(100px,20vw,220px);
+  font-weight:600;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(201,151,58,0.07);
+  white-space:nowrap;
+  pointer-events:none;
+  user-select:none;
+  letter-spacing:-.03em;
+  line-height:1;
+}
  
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--white);
-    color: var(--black);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
+.hero-inner{
+  position:relative;
+  z-index:1;
+  max-width:900px;
+  margin:0 auto;
+  width:100%;
+  padding:0 40px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:flex-end;
+  gap:40px;
+}
+@media(max-width:640px){
+  .hero-inner{grid-template-columns:1fr;padding:0 24px;gap:28px}
+  .hero-right{display:none}
+}
  
-  /* ─── HERO ─── */
-  .hero {
-    display: grid;
-    grid-template-columns: 1fr 360px;
-    min-height: 100vh;
-    position: relative;
-  }
+.hero-eyebrow{
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:24px;
+  opacity:0;animation:up .7s .1s ease forwards;
+}
  
-  .hero-left {
-    background: var(--black);
-    padding: 60px 64px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    overflow: hidden;
-  }
+.hero-name{
+  font-family:'Fraunces',serif;
+  font-size:clamp(52px,9vw,96px);
+  font-weight:600;
+  color:var(--bright);
+  line-height:.95;
+  letter-spacing:-.025em;
+  margin-bottom:28px;
+  opacity:0;animation:up .7s .22s ease forwards;
+}
+.hero-name em{
+  font-style:italic;
+  font-weight:300;
+  color:var(--gold);
+}
  
-  .hero-left::before {
-    content: '';
-    position: absolute;
-    top: -120px; left: -120px;
-    width: 500px; height: 500px;
-    border-radius: 50%;
-    border: 1px solid rgba(200,149,42,0.15);
-    pointer-events: none;
-  }
+.hero-role{
+  font-size:15px;
+  font-weight:300;
+  color:var(--dim);
+  max-width:440px;
+  line-height:1.75;
+  opacity:0;animation:up .7s .34s ease forwards;
+}
  
-  .hero-left::after {
-    content: '';
-    position: absolute;
-    bottom: -80px; right: -80px;
-    width: 360px; height: 360px;
-    border-radius: 50%;
-    border: 1px solid rgba(200,149,42,0.08);
-    pointer-events: none;
-  }
+/* foto */
+.hero-right{
+  opacity:0;animation:up .7s .46s ease forwards;
+  align-self:flex-end;
+}
+.avatar{
+  width:110px;height:110px;
+  border-radius:50%;
+  overflow:hidden;
+  border:1px solid var(--line2);
+  background:var(--bg2);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.avatar::after{
+  content:'';
+  position:absolute;inset:0;
+  border-radius:50%;
+  box-shadow:inset 0 0 0 1px rgba(201,151,58,0.2);
+}
+.avatar img{width:100%;height:100%;object-fit:cover;object-position:top}
+.avatar-ph{display:flex;flex-direction:column;align-items:center;gap:5px}
+.avatar-ph svg{width:32px;height:32px;fill:var(--dimmer)}
+.avatar-ph span{font-size:9px;color:var(--dimmer);letter-spacing:.08em;text-transform:uppercase}
  
-  .hero-tag {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 48px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .hero-tag::before {
-    content: '';
-    display: block;
-    width: 24px; height: 1px;
-    background: var(--accent);
-  }
+/* divisore */
+.hero-rule{
+  max-width:900px;margin:0 auto;width:100%;
+  padding:0 40px;
+  position:relative;z-index:1;
+  margin-top:48px;
+  opacity:0;animation:up .6s .56s ease forwards;
+}
+@media(max-width:640px){.hero-rule{padding:0 24px}}
+.hero-rule hr{border:none;border-top:1px solid var(--line2)}
  
-  .hero-name {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(52px, 7vw, 88px);
-    font-weight: 800;
-    color: var(--white);
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-  }
+/* contatti sotto hero */
+.hero-contacts{
+  max-width:900px;margin:0 auto;width:100%;
+  padding:28px 40px 0;
+  display:flex;flex-wrap:wrap;gap:24px;
+  position:relative;z-index:1;
+  opacity:0;animation:up .6s .64s ease forwards;
+}
+@media(max-width:640px){.hero-contacts{padding:24px 24px 0;gap:16px}}
+.hc{
+  display:flex;align-items:center;gap:9px;
+  font-size:13px;color:var(--dim);
+  text-decoration:none;
+  transition:color .2s;
+}
+.hc:hover{color:var(--text)}
+.hc-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
  
-  .hero-name span {
-    color: var(--accent);
-  }
+/* ══ CONTENT ══ */
+.page{max-width:900px;margin:0 auto;padding:80px 40px 100px}
+@media(max-width:640px){.page{padding:60px 24px 80px}}
  
-  .hero-role {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    color: var(--gray-300);
-    margin-top: 28px;
-    letter-spacing: 0.03em;
-    max-width: 400px;
-    line-height: 1.7;
-  }
+/* sezione */
+.sec{margin-bottom:72px}
+.sec-head{
+  display:flex;align-items:center;gap:20px;
+  margin-bottom:36px;
+}
+.sec-label{
+  font-size:10px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);
+  white-space:nowrap;
+}
+.sec-rule{flex:1;height:1px;background:var(--line2)}
+.sec-num{font-size:11px;color:var(--dimmer);letter-spacing:.06em}
  
-  .hero-contacts {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 60px;
-  }
+/* ══ EXPERIENCE ══ */
+.exp-item{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;
+  padding:28px 0;
+  border-bottom:1px solid var(--line);
+  opacity:0;animation:up .6s ease forwards;
+}
+.exp-item:first-child{padding-top:0}
+.exp-item:last-child{border-bottom:none}
+@media(max-width:580px){.exp-item{grid-template-columns:1fr;gap:12px}}
  
-  .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    color: var(--gray-300);
-    font-size: 14px;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .contact-item:hover { color: var(--white); }
+.exp-main{}
+.exp-title{
+  font-family:'Fraunces',serif;
+  font-size:22px;
+  font-weight:400;
+  color:var(--bright);
+  letter-spacing:-.015em;
+  line-height:1.2;
+  margin-bottom:6px;
+}
+.exp-co{
+  font-size:13px;color:var(--dim);
+  margin-bottom:18px;
+  display:flex;align-items:center;gap:8px;
+}
+.exp-co-sep{width:16px;height:1px;background:var(--line2);display:inline-block}
+.exp-bullets{
+  display:flex;flex-direction:column;gap:8px;
+  list-style:none;
+}
+.exp-bullets li{
+  font-size:14px;color:var(--dim);
+  font-weight:300;
+  padding-left:20px;
+  position:relative;
+  line-height:1.6;
+}
+.exp-bullets li::before{
+  content:'';
+  position:absolute;left:0;top:11px;
+  width:8px;height:1px;
+  background:var(--gold2);
+}
  
-  .contact-icon {
-    width: 32px; height: 32px;
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
+.exp-meta{text-align:right}
+.exp-period{
+  font-size:12px;
+  color:var(--dimmer);
+  font-weight:300;
+  white-space:nowrap;
+  letter-spacing:.04em;
+}
+@media(max-width:580px){.exp-meta{text-align:left}}
  
-  .contact-icon svg { width: 14px; height: 14px; fill: var(--accent); }
+/* ══ GRID 2 COL ══ */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+@media(max-width:580px){.g2{grid-template-columns:1fr}}
  
-  /* ─── HERO RIGHT (foto) ─── */
-  .hero-right {
-    position: relative;
-    overflow: hidden;
-    background: var(--gray-100);
-  }
+.panel{
+  background:var(--bg1);
+  padding:32px;
+  border:1px solid var(--line);
+}
+.panel:first-child{border-radius:12px 0 0 12px}
+.panel:last-child{border-radius:0 12px 12px 0}
+@media(max-width:580px){
+  .panel:first-child{border-radius:12px 12px 0 0}
+  .panel:last-child{border-radius:0 0 12px 12px}
+}
+.panel-title{
+  font-size:10px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dimmer);
+  margin-bottom:24px;
+}
  
-  .hero-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-    opacity: 0.92;
-    filter: grayscale(10%);
-  }
+/* skill */
+.skill{margin-bottom:16px}
+.skill:last-child{margin-bottom:0}
+.sk-row{display:flex;justify-content:space-between;margin-bottom:7px}
+.sk-name{font-size:13px;color:var(--text);font-weight:400}
+.sk-lv{font-size:11px;color:var(--dimmer)}
+.sk-track{height:1px;background:var(--line2);position:relative}
+.sk-fill{
+  position:absolute;left:0;top:0;height:100%;
+  background:var(--gold);
+  transform:scaleX(0);transform-origin:left;
+  animation:fillbar .9s ease forwards;
+}
+@keyframes fillbar{to{transform:scaleX(1)}}
  
-  .photo-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: #1A1A18;
-    gap: 16px;
-  }
+/* edu */
+.edu{padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid var(--line)}
+.edu:last-child{border:none;padding:0;margin:0}
+.edu-yr{font-size:11px;color:var(--gold);letter-spacing:.1em;margin-bottom:5px;font-weight:500}
+.edu-ti{
+  font-family:'Fraunces',serif;
+  font-size:16px;font-weight:400;
+  color:var(--bright);margin-bottom:4px;letter-spacing:-.01em;
+}
+.edu-sc{font-size:12px;color:var(--dimmer);font-weight:300;line-height:1.55}
  
-  .photo-placeholder svg {
-    width: 64px; height: 64px;
-    opacity: 0.25;
-    fill: var(--gray-300);
-  }
+/* tags */
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{
+  font-size:12px;font-weight:400;
+  padding:7px 16px;border-radius:100px;
+  border:1px solid var(--line2);
+  color:var(--dim);
+  letter-spacing:.03em;
+  transition:border-color .2s,color .2s;
+  cursor:default;
+}
+.tag:hover{border-color:var(--gold2);color:var(--text)}
  
-  .photo-placeholder p {
-    font-size: 13px;
-    color: var(--gray-500);
-    text-align: center;
-    padding: 0 32px;
-    line-height: 1.6;
-    font-style: italic;
-  }
+/* lingue */
+.lang-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:13px 0;border-bottom:1px solid var(--line);
+  font-size:14px;
+}
+.lang-row:last-child{border:none}
+.ln{color:var(--text);font-weight:400}
+.ll{
+  font-size:11px;font-weight:500;letter-spacing:.1em;
+  color:var(--gold);
+  background:var(--gold-dim);
+  padding:3px 10px;border-radius:100px;
+}
  
-  .hero-badge {
-    position: absolute;
-    bottom: 32px; left: -1px;
-    background: var(--accent);
-    color: var(--black);
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 10px 20px;
-  }
+/* info rows */
+.inf{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px 0;border-bottom:1px solid var(--line);
+  font-size:13px;
+}
+.inf:last-child{border:none}
+.inf-k{color:var(--dimmer);font-weight:300}
+.inf-v{color:var(--text)}
  
-  /* ─── SEZIONI ─── */
-  .content {
-    display: grid;
-    grid-template-columns: 1fr 360px;
-  }
+/* ══ FOOTER ══ */
+footer{
+  border-top:1px solid var(--line);
+  padding:32px 40px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:12px;
+  font-size:12px;color:var(--dimmer);
+  letter-spacing:.04em;
+}
+@media(max-width:640px){footer{padding:28px 24px;flex-direction:column;text-align:center}}
  
-  .main-col {
-    padding: 80px 64px;
-    border-right: var(--line);
-  }
- 
-  .side-col {
-    padding: 80px 40px;
-    background: var(--gray-100);
-  }
- 
-  /* ─── SECTION HEADER ─── */
-  .section-label {
-    font-family: 'Syne', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 40px;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--gray-300);
-    max-width: 120px;
-  }
- 
-  /* ─── ESPERIENZA ─── */
-  .exp-block {
-    margin-bottom: 52px;
-    position: relative;
-    padding-left: 28px;
-  }
-  .exp-block::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 8px;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
-  .exp-block::after {
-    content: '';
-    position: absolute;
-    left: 3px; top: 20px;
-    width: 1px;
-    height: calc(100% + 20px);
-    background: var(--line);
-  }
-  .exp-block:last-child::after { display: none; }
- 
-  .exp-period {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
- 
-  .exp-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--black);
-    line-height: 1.2;
-    margin-bottom: 4px;
-  }
- 
-  .exp-company {
-    font-size: 13px;
-    color: var(--gray-500);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .exp-company span {
-    display: inline-block;
-    width: 4px; height: 4px;
-    border-radius: 50%;
-    background: var(--gray-300);
-  }
- 
-  .exp-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .exp-list li {
-    font-size: 14px;
-    color: var(--gray-700);
-    padding-left: 16px;
-    position: relative;
-    line-height: 1.55;
-  }
-  .exp-list li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--gray-300);
-    font-size: 12px;
-  }
- 
-  /* ─── SIDE ─── */
-  .side-section { margin-bottom: 52px; }
- 
-  .skill-row {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-top: 8px;
-  }
- 
-  .skill-item {}
- 
-  .skill-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 6px;
-  }
- 
-  .skill-name {
-    font-size: 13px;
-    color: var(--gray-700);
-    font-weight: 500;
-  }
- 
-  .skill-pct {
-    font-size: 11px;
-    color: var(--gray-500);
-  }
- 
-  .skill-bar-bg {
-    height: 3px;
-    background: #E0DDD6;
-    border-radius: 2px;
-    overflow: hidden;
-  }
- 
-  .skill-bar {
-    height: 100%;
-    background: var(--accent);
-    border-radius: 2px;
-    transform-origin: left;
-    animation: growBar 1s ease forwards;
-    animation-delay: 0.4s;
-    transform: scaleX(0);
-  }
- 
-  @keyframes growBar { to { transform: scaleX(1); } }
- 
-  /* tag competenze */
-  .tag-cloud {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 8px;
-  }
- 
-  .tag {
-    font-size: 12px;
-    font-weight: 500;
-    padding: 5px 12px;
-    border-radius: 100px;
-    background: var(--white);
-    border: 1px solid #D8D5CE;
-    color: var(--gray-700);
-    letter-spacing: 0.01em;
-  }
- 
-  /* formazione */
-  .edu-block {
-    margin-bottom: 28px;
-  }
-  .edu-year {
-    font-size: 11px;
-    color: var(--accent);
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-  .edu-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--black);
-    line-height: 1.3;
-    margin-bottom: 2px;
-  }
-  .edu-school {
-    font-size: 12px;
-    color: var(--gray-500);
-  }
- 
-  /* lingua */
-  .lang-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: var(--line);
-  }
-  .lang-row:last-child { border-bottom: none; }
-  .lang-name { font-size: 13px; font-weight: 500; color: var(--black); }
-  .lang-level {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: var(--accent);
-    background: var(--accent-light);
-    padding: 3px 10px;
-    border-radius: 100px;
-  }
- 
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--black);
-    color: var(--gray-500);
-    font-size: 12px;
-    padding: 24px 64px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    letter-spacing: 0.05em;
-  }
-  footer span { color: var(--gray-300); }
- 
-  /* ─── ANIMAZIONI ENTRY ─── */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.7s ease forwards;
-  }
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
- 
-  .hero-left > * { animation: fadeUp 0.7s ease forwards; }
-  .hero-tag { animation-delay: 0.1s; }
-  .hero-name { animation-delay: 0.25s; }
-  .hero-role { animation-delay: 0.4s; }
-  .hero-contacts { animation-delay: 0.55s; }
- 
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 900px) {
-    .hero, .content {
-      grid-template-columns: 1fr;
-    }
-    .hero-right {
-      height: 360px;
-    }
-    .hero-left {
-      padding: 48px 32px;
-    }
-    .main-col {
-      padding: 48px 32px;
-      border-right: none;
-      border-bottom: var(--line);
-    }
-    .side-col {
-      padding: 48px 32px;
-    }
-    footer {
-      padding: 20px 32px;
-      flex-direction: column;
-      gap: 8px;
-      text-align: center;
-    }
-  }
+/* ══ ANIMAZIONI ══ */
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.fi{opacity:0;animation:up .6s ease forwards}
+.d1{animation-delay:.05s}.d2{animation-delay:.12s}
+.d3{animation-delay:.19s}.d4{animation-delay:.26s}
 </style>
 </head>
 <body>
  
-<!-- ═══ HERO ═══ -->
+<!-- ══ HERO ══ -->
 <section class="hero">
-  <div class="hero-left">
-    <div>
-      <div class="hero-tag">Curriculum Vitae</div>
-      <h1 class="hero-name">Davide<br><span>Iacuzio</span></h1>
-      <p class="hero-role">
-        Tecnico sistemi elettrico-elettronici · Montatore quadri · Controllo qualità
-      </p>
-    </div>
+  <div class="hero-bg-name">Davide</div>
  
-    <div class="hero-contacts">
-      <a href="tel:+393317695902" class="contact-item">
-        <div class="contact-icon">
-          <svg viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Curriculum Vitae</p>
+      <h1 class="hero-name">Davide<br><em>Iacuzio</em></h1>
+      <p class="hero-role">Tecnico Sistemi Elettrico-Elettronici · Montatore Quadri · Controllo Qualità</p>
+    </div>
+    <div class="hero-right">
+      <div class="avatar">
+        <!--
+          ══════════════════════════════════════
+          FOTO: sostituisci il div .avatar-ph con:
+          <img src="foto.jpg" alt="Davide Iacuzio">
+          Stessa cartella dell'HTML.
+          Foto verticale, viso centrato.
+          ══════════════════════════════════════
+        -->
+        <div class="avatar-ph">
+          <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+          <span>foto.jpg</span>
         </div>
-        +39 331 769 5902
-      </a>
-      <a href="mailto:davideiacuzio005@gmail.com" class="contact-item">
-        <div class="contact-icon">
-          <svg viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.708 2.825L15 11.105V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383v5.722z"/></svg>
-        </div>
-        davideiacuzio005@gmail.com
-      </a>
-      <div class="contact-item">
-        <div class="contact-icon">
-          <svg viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/><path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
-        </div>
-        Codemondo (RE), Italia
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">
-          <svg viewBox="0 0 16 16"><path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13zm1.5-.5a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-13a.5.5 0 0 0-.5-.5h-13zM8 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V5zm0 0v4h5V5H8zM3 7a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/></svg>
-        </div>
-        Patente B · Nato l'8/02/2006
       </div>
     </div>
   </div>
  
-  <div class="hero-right">
-    <!--
-      ══════════════════════════════════════════════════════════
-      📸 FOTO: sostituisci il blocco .photo-placeholder con:
-         <img class="hero-photo" src="TUA_FOTO.jpg" alt="Davide Iacuzio">
-      La foto ideale è verticale (portrait), senza sfondo,
-      viso ben illuminato, abbigliamento professionale.
-      ══════════════════════════════════════════════════════════
-    -->
-    <div class="photo-placeholder">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-      </svg>
-      <p>Sostituisci con la tua foto professionale.<br>Vedi commento nel codice HTML.</p>
-    </div>
-    <div class="hero-badge">Disponibile da subito</div>
+  <div class="hero-rule"><hr></div>
+ 
+  <div class="hero-contacts">
+    <a href="tel:+393317695902" class="hc"><div class="hc-dot"></div>+39 331 769 5902</a>
+    <a href="mailto:davideiacuzio005@gmail.com" class="hc"><div class="hc-dot"></div>davideiacuzio005@gmail.com</a>
+    <div class="hc"><div class="hc-dot"></div>Codemondo (RE), Italia</div>
+    <div class="hc"><div class="hc-dot"></div>Patente B</div>
   </div>
 </section>
  
-<!-- ═══ CORPO ═══ -->
-<div class="content">
+<!-- ══ CONTENUTO ══ -->
+<div class="page">
  
-  <!-- COLONNA SINISTRA: ESPERIENZA -->
-  <main class="main-col">
- 
-    <div class="section-label">Esperienza lavorativa</div>
- 
-    <div class="exp-block fade-up" style="animation-delay:0.1s">
-      <div class="exp-period">Mag 2024 — Ago 2024</div>
-      <div class="exp-title">Montatore Quadri Elettrici</div>
-      <div class="exp-company">Electric Evolution <span></span> Cavriago (RE)</div>
-      <ul class="exp-list">
-        <li>Preparazione manuale e spellatura di cavi elettrici</li>
-        <li>Cablaggio e collegamento di componenti elettrici ed elettronici su macchine e quadri</li>
-        <li>Lavoro svolto in piena autonomia seguendo istruzioni tecniche</li>
-      </ul>
+  <!-- ESPERIENZA -->
+  <section class="sec">
+    <div class="sec-head">
+      <span class="sec-label">Esperienza</span>
+      <div class="sec-rule"></div>
+      <span class="sec-num">01</span>
     </div>
  
-    <div class="exp-block fade-up" style="animation-delay:0.2s">
-      <div class="exp-period">Apr 2023 — Mag 2023</div>
-      <div class="exp-title">Operatore Controllo Qualità</div>
-      <div class="exp-company">Walvoil S.p.A. <span></span> Bibbiano (RE)</div>
-      <ul class="exp-list">
-        <li>Controlli dimensionali e visivi su pezzi meccanici con strumenti di misura</li>
-        <li>Verifica della conformità dei prodotti agli standard tecnici e alle specifiche di disegno</li>
-        <li>Registrazione risultati e segnalazione non conformità alla produzione</li>
-      </ul>
-    </div>
- 
-    <div class="exp-block fade-up" style="animation-delay:0.3s">
-      <div class="exp-period">Giu 2023 — Apr 2025</div>
-      <div class="exp-title">Pizzaiolo</div>
-      <div class="exp-company">Ristorante Pizzeria Paradise <span></span> Cavriago (RE)</div>
-      <ul class="exp-list">
-        <li>Preparazione degli ingredienti e supporto nella farcitura delle pizze</li>
-        <li>Assistenza al pizzaiolo durante la cottura</li>
-        <li>Mantenimento della pulizia e dell'ordine dell'area di lavoro</li>
-      </ul>
-    </div>
- 
-    <div class="exp-block fade-up" style="animation-delay:0.35s">
-      <div class="exp-period">Giu 2021 — Apr 2025</div>
-      <div class="exp-title">Cameriere</div>
-      <div class="exp-company">Ristorante Pizzeria Paradise <span></span> Cavriago (RE)</div>
-      <ul class="exp-list">
-        <li>Accoglienza clienti, gestione ordinazioni e conto</li>
-        <li>Servizio di cibi e bevande con attenzione alla relazione col cliente</li>
-      </ul>
-    </div>
- 
-  </main>
- 
-  <!-- COLONNA DESTRA: COMPETENZE / FORMAZIONE -->
-  <aside class="side-col">
- 
-    <!-- FORMAZIONE -->
-    <div class="side-section">
-      <div class="section-label">Formazione</div>
-      <div class="edu-block">
-        <div class="edu-year">2019 — 2025</div>
-        <div class="edu-title">Diploma di Scuola Superiore</div>
-        <div class="edu-school">Istituto Silvio D'Arzo · Montecchio Emilia<br>Manutenzione e Assistenza Tecnica</div>
+    <div class="exp-item d1">
+      <div class="exp-main">
+        <div class="exp-title">Montatore Quadri Elettrici</div>
+        <div class="exp-co"><span class="exp-co-sep"></span>Electric Evolution · Cavriago (RE)</div>
+        <ul class="exp-bullets">
+          <li>Preparazione manuale e spellatura di cavi elettrici</li>
+          <li>Cablaggio e collegamento di componenti elettrici ed elettronici su macchine e quadri</li>
+          <li>Lavoro svolto in piena autonomia seguendo istruzioni tecniche</li>
+        </ul>
       </div>
-      <div class="edu-block">
-        <div class="edu-year">Certificazione EQF 3</div>
-        <div class="edu-title">Operatore Sistemi Elettrico-Elettronici</div>
-        <div class="edu-school">Istituto Silvio D'Arzo · Montecchio Emilia</div>
+      <div class="exp-meta">
+        <span class="exp-period">Mag – Ago 2024</span>
       </div>
     </div>
  
-    <!-- COMPETENZE TECNICHE -->
-    <div class="side-section">
-      <div class="section-label">Competenze tecniche</div>
-      <div class="skill-row">
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Cablaggio macchine elettriche</span>
-            <span class="skill-pct">Avanzato</span>
-          </div>
-          <div class="skill-bar-bg"><div class="skill-bar" style="width:88%"></div></div>
+    <div class="exp-item d2">
+      <div class="exp-main">
+        <div class="exp-title">Operatore Controllo Qualità</div>
+        <div class="exp-co"><span class="exp-co-sep"></span>Walvoil S.p.A. · Bibbiano (RE)</div>
+        <ul class="exp-bullets">
+          <li>Controlli dimensionali e visivi su pezzi meccanici con strumenti di misura</li>
+          <li>Verifica della conformità agli standard tecnici e alle specifiche di disegno</li>
+          <li>Registrazione risultati e segnalazione non conformità alla produzione</li>
+        </ul>
+      </div>
+      <div class="exp-meta">
+        <span class="exp-period">Apr – Mag 2023</span>
+      </div>
+    </div>
+ 
+    <div class="exp-item d3">
+      <div class="exp-main">
+        <div class="exp-title">Pizzaiolo &amp; Cameriere</div>
+        <div class="exp-co"><span class="exp-co-sep"></span>Ristorante Pizzeria Paradise · Cavriago (RE)</div>
+        <ul class="exp-bullets">
+          <li>Preparazione ingredienti, farcitura e assistenza alla cottura delle pizze</li>
+          <li>Accoglienza clienti, gestione ordinazioni, servizio e conto</li>
+          <li>Lavoro costante in team e a contatto diretto con il pubblico</li>
+        </ul>
+      </div>
+      <div class="exp-meta">
+        <span class="exp-period">2021 – 2025</span>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- SKILL + FORMAZIONE -->
+  <section class="sec fi d1">
+    <div class="sec-head">
+      <span class="sec-label">Competenze &amp; Formazione</span>
+      <div class="sec-rule"></div>
+      <span class="sec-num">02</span>
+    </div>
+    <div class="g2">
+      <div class="panel">
+        <div class="panel-title">Competenze tecniche</div>
+        <div class="skill">
+          <div class="sk-row"><span class="sk-name">Cablaggio macchine</span><span class="sk-lv">Avanzato</span></div>
+          <div class="sk-track"><div class="sk-fill" style="width:88%"></div></div>
         </div>
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Lettura schemi funzionali</span>
-            <span class="skill-pct">Buono</span>
-          </div>
-          <div class="skill-bar-bg"><div class="skill-bar" style="width:75%; animation-delay:0.5s"></div></div>
+        <div class="skill">
+          <div class="sk-row"><span class="sk-name">Lettura schemi funzionali</span><span class="sk-lv">Buono</span></div>
+          <div class="sk-track"><div class="sk-fill" style="width:75%;animation-delay:.12s"></div></div>
         </div>
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Strumenti di misura</span>
-            <span class="skill-pct">Buono</span>
-          </div>
-          <div class="skill-bar-bg"><div class="skill-bar" style="width:72%; animation-delay:0.6s"></div></div>
+        <div class="skill">
+          <div class="sk-row"><span class="sk-name">Strumenti di misura</span><span class="sk-lv">Buono</span></div>
+          <div class="sk-track"><div class="sk-fill" style="width:72%;animation-delay:.2s"></div></div>
         </div>
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Controllo qualità</span>
-            <span class="skill-pct">Intermedio</span>
-          </div>
-          <div class="skill-bar-bg"><div class="skill-bar" style="width:65%; animation-delay:0.7s"></div></div>
+        <div class="skill">
+          <div class="sk-row"><span class="sk-name">Controllo qualità</span><span class="sk-lv">Intermedio</span></div>
+          <div class="sk-track"><div class="sk-fill" style="width:65%;animation-delay:.28s"></div></div>
         </div>
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Linguaggio Ladder (PLC)</span>
-            <span class="skill-pct">Base</span>
-          </div>
-          <div class="skill-bar-bg"><div class="skill-bar" style="width:45%; animation-delay:0.8s"></div></div>
+        <div class="skill">
+          <div class="sk-row"><span class="sk-name">Linguaggio Ladder</span><span class="sk-lv">Base</span></div>
+          <div class="sk-track"><div class="sk-fill" style="width:40%;animation-delay:.36s"></div></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Formazione</div>
+        <div class="edu">
+          <div class="edu-yr">2019 – 2025</div>
+          <div class="edu-ti">Diploma Scuola Superiore</div>
+          <div class="edu-sc">Manutenzione e Assistenza Tecnica<br>Istituto Silvio D'Arzo · Montecchio Emilia</div>
+        </div>
+        <div class="edu">
+          <div class="edu-yr">Qualifica EQF 3</div>
+          <div class="edu-ti">Operatore Sistemi Elettrico-Elettronici</div>
+          <div class="edu-sc">Istituto Silvio D'Arzo · Montecchio Emilia</div>
         </div>
       </div>
     </div>
+  </section>
  
-    <!-- SOFT SKILLS -->
-    <div class="side-section">
-      <div class="section-label">Qualità personali</div>
-      <div class="tag-cloud">
-        <span class="tag">Precisione manuale</span>
-        <span class="tag">Autonomia operativa</span>
-        <span class="tag">Lavoro in team</span>
-        <span class="tag">Relazione col cliente</span>
-        <span class="tag">Problem solving</span>
-        <span class="tag">Affidabilità</span>
+  <!-- QUALITÀ + LINGUE -->
+  <section class="sec fi d2">
+    <div class="sec-head">
+      <span class="sec-label">Qualità &amp; Lingue</span>
+      <div class="sec-rule"></div>
+      <span class="sec-num">03</span>
+    </div>
+    <div class="g2">
+      <div class="panel">
+        <div class="panel-title">Qualità personali</div>
+        <div class="tags">
+          <span class="tag">Precisione manuale</span>
+          <span class="tag">Autonomia operativa</span>
+          <span class="tag">Lavoro in team</span>
+          <span class="tag">Problem solving</span>
+          <span class="tag">Relazione col cliente</span>
+          <span class="tag">Affidabilità</span>
+          <span class="tag">Puntualità</span>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Lingue &amp; Info</div>
+        <div class="lang-row"><span class="ln">Italiano</span><span class="ll">Madrelingua</span></div>
+        <div class="lang-row"><span class="ln">Inglese</span><span class="ll">B1</span></div>
+        <div style="height:16px"></div>
+        <div class="inf"><span class="inf-k">Data di nascita</span><span class="inf-v">08/02/2006</span></div>
+        <div class="inf"><span class="inf-k">Patente</span><span class="inf-v">Categoria B</span></div>
+        <div class="inf"><span class="inf-k">Residenza</span><span class="inf-v">Codemondo (RE)</span></div>
       </div>
     </div>
+  </section>
  
-    <!-- LINGUE -->
-    <div class="side-section">
-      <div class="section-label">Lingue</div>
-      <div class="lang-row">
-        <span class="lang-name">Italiano</span>
-        <span class="lang-level">Madrelingua</span>
-      </div>
-      <div class="lang-row">
-        <span class="lang-name">Inglese</span>
-        <span class="lang-level">B1</span>
-      </div>
-    </div>
- 
-  </aside>
 </div>
  
-<!-- ═══ FOOTER ═══ -->
 <footer>
-  <div>© 2025 Davide Iacuzio</div>
-  <div>Autorizzo il trattamento dei dati personali ai sensi del GDPR 679/16</div>
+  <span>© 2025 Davide Iacuzio</span>
+  <span>Autorizzo il trattamento dei dati personali ai sensi del GDPR 679/16</span>
 </footer>
  
 </body>
