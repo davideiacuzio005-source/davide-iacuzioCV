@@ -3,530 +3,195 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Davide Iacuzio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Davide Iacuzio | Developer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
 :root{
-  --bg:#0F0F0E;
-  --bg1:#141413;
-  --bg2:#1A1A18;
-  --line:#252523;
-  --line2:#2E2E2B;
+  --bg:#0b0b0b;
+  --bg1:#111;
+  --line:#1f1f1f;
   --gold:#C9973A;
-  --gold2:#8A6220;
-  --gold-dim:rgba(201,151,58,0.12);
-  --text:#D4CFCA;
-  --bright:#EDEAE5;
-  --dim:#7A7570;
-  --dimmer:#504D49;
+  --text:#d4d4d4;
+  --bright:#fff;
+  --dim:#888;
 }
-html{scroll-behavior:smooth}
+
 body{
   font-family:'DM Sans',sans-serif;
   background:var(--bg);
   color:var(--text);
   line-height:1.6;
-  -webkit-font-smoothing:antialiased;
 }
- 
-/* ══ HERO ══ */
+
+/* effetto monitor */
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:linear-gradient(rgba(0,255,120,0.03) 1px, transparent 1px);
+  background-size:100% 2px;
+  pointer-events:none;
+}
+
+/* HERO */
 .hero{
-  min-height:100svh;
+  min-height:100vh;
   display:flex;
   flex-direction:column;
-  justify-content:flex-end;
-  padding:0 0 72px;
-  position:relative;
-  overflow:hidden;
+  justify-content:center;
+  padding:40px;
 }
- 
-/* grande nome in background */
-.hero-bg-name{
-  position:absolute;
-  top:50%;left:-12px;
-  transform:translateY(-52%);
-  font-family:'Fraunces',serif;
-  font-size:clamp(100px,20vw,220px);
-  font-weight:600;
-  color:transparent;
-  -webkit-text-stroke:1px rgba(201,151,58,0.07);
-  white-space:nowrap;
-  pointer-events:none;
-  user-select:none;
-  letter-spacing:-.03em;
-  line-height:1;
-}
- 
-.hero-inner{
-  position:relative;
-  z-index:1;
-  max-width:900px;
-  margin:0 auto;
-  width:100%;
-  padding:0 40px;
-  display:grid;
-  grid-template-columns:1fr auto;
-  align-items:flex-end;
-  gap:40px;
-}
-@media(max-width:640px){
-  .hero-inner{grid-template-columns:1fr;padding:0 24px;gap:28px}
-  .hero-right{display:none}
-}
- 
-.hero-eyebrow{
-  font-size:11px;
-  font-weight:500;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  color:var(--gold);
-  margin-bottom:24px;
-  opacity:0;animation:up .7s .1s ease forwards;
-}
- 
+
 .hero-name{
+  font-size:70px;
   font-family:'Fraunces',serif;
-  font-size:clamp(52px,9vw,96px);
-  font-weight:600;
-  color:var(--bright);
-  line-height:.95;
-  letter-spacing:-.025em;
-  margin-bottom:28px;
-  opacity:0;animation:up .7s .22s ease forwards;
 }
-.hero-name em{
-  font-style:italic;
-  font-weight:300;
-  color:var(--gold);
-}
- 
+
 .hero-role{
-  font-size:15px;
-  font-weight:300;
+  margin-top:20px;
   color:var(--dim);
-  max-width:440px;
-  line-height:1.75;
-  opacity:0;animation:up .7s .34s ease forwards;
+  max-width:500px;
 }
- 
-/* foto */
-.hero-right{
-  opacity:0;animation:up .7s .46s ease forwards;
-  align-self:flex-end;
-}
+
 .avatar{
-  width:110px;height:110px;
+  margin-top:30px;
+  width:120px;height:120px;
   border-radius:50%;
   overflow:hidden;
-  border:1px solid var(--line2);
-  background:var(--bg2);
-  display:flex;align-items:center;justify-content:center;
-  position:relative;
-}
-.avatar::after{
-  content:'';
-  position:absolute;inset:0;
-  border-radius:50%;
-  box-shadow:inset 0 0 0 1px rgba(201,151,58,0.2);
-}
-.avatar img{width:100%;height:100%;object-fit:cover;object-position:top}
-.avatar-ph{display:flex;flex-direction:column;align-items:center;gap:5px}
-.avatar-ph svg{width:32px;height:32px;fill:var(--dimmer)}
-.avatar-ph span{font-size:9px;color:var(--dimmer);letter-spacing:.08em;text-transform:uppercase}
- 
-/* divisore */
-.hero-rule{
-  max-width:900px;margin:0 auto;width:100%;
-  padding:0 40px;
-  position:relative;z-index:1;
-  margin-top:48px;
-  opacity:0;animation:up .6s .56s ease forwards;
-}
-@media(max-width:640px){.hero-rule{padding:0 24px}}
-.hero-rule hr{border:none;border-top:1px solid var(--line2)}
- 
-/* contatti sotto hero */
-.hero-contacts{
-  max-width:900px;margin:0 auto;width:100%;
-  padding:28px 40px 0;
-  display:flex;flex-wrap:wrap;gap:24px;
-  position:relative;z-index:1;
-  opacity:0;animation:up .6s .64s ease forwards;
-}
-@media(max-width:640px){.hero-contacts{padding:24px 24px 0;gap:16px}}
-.hc{
-  display:flex;align-items:center;gap:9px;
-  font-size:13px;color:var(--dim);
-  text-decoration:none;
-  transition:color .2s;
-}
-.hc:hover{color:var(--text)}
-.hc-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
- 
-/* ══ CONTENT ══ */
-.page{max-width:900px;margin:0 auto;padding:80px 40px 100px}
-@media(max-width:640px){.page{padding:60px 24px 80px}}
- 
-/* sezione */
-.sec{margin-bottom:72px}
-.sec-head{
-  display:flex;align-items:center;gap:20px;
-  margin-bottom:36px;
-}
-.sec-label{
-  font-size:10px;font-weight:500;
-  letter-spacing:.2em;text-transform:uppercase;
-  color:var(--gold);
-  white-space:nowrap;
-}
-.sec-rule{flex:1;height:1px;background:var(--line2)}
-.sec-num{font-size:11px;color:var(--dimmer);letter-spacing:.06em}
- 
-/* ══ EXPERIENCE ══ */
-.exp-item{
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:24px;
-  padding:28px 0;
-  border-bottom:1px solid var(--line);
-  opacity:0;animation:up .6s ease forwards;
-}
-.exp-item:first-child{padding-top:0}
-.exp-item:last-child{border-bottom:none}
-@media(max-width:580px){.exp-item{grid-template-columns:1fr;gap:12px}}
- 
-.exp-main{}
-.exp-title{
-  font-family:'Fraunces',serif;
-  font-size:22px;
-  font-weight:400;
-  color:var(--bright);
-  letter-spacing:-.015em;
-  line-height:1.2;
-  margin-bottom:6px;
-}
-.exp-co{
-  font-size:13px;color:var(--dim);
-  margin-bottom:18px;
-  display:flex;align-items:center;gap:8px;
-}
-.exp-co-sep{width:16px;height:1px;background:var(--line2);display:inline-block}
-.exp-bullets{
-  display:flex;flex-direction:column;gap:8px;
-  list-style:none;
-}
-.exp-bullets li{
-  font-size:14px;color:var(--dim);
-  font-weight:300;
-  padding-left:20px;
-  position:relative;
-  line-height:1.6;
-}
-.exp-bullets li::before{
-  content:'';
-  position:absolute;left:0;top:11px;
-  width:8px;height:1px;
-  background:var(--gold2);
-}
- 
-.exp-meta{text-align:right}
-.exp-period{
-  font-size:12px;
-  color:var(--dimmer);
-  font-weight:300;
-  white-space:nowrap;
-  letter-spacing:.04em;
-}
-@media(max-width:580px){.exp-meta{text-align:left}}
- 
-/* ══ GRID 2 COL ══ */
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:2px}
-@media(max-width:580px){.g2{grid-template-columns:1fr}}
- 
-.panel{
-  background:var(--bg1);
-  padding:32px;
   border:1px solid var(--line);
 }
-.panel:first-child{border-radius:12px 0 0 12px}
-.panel:last-child{border-radius:0 12px 12px 0}
-@media(max-width:580px){
-  .panel:first-child{border-radius:12px 12px 0 0}
-  .panel:last-child{border-radius:0 0 12px 12px}
-}
-.panel-title{
-  font-size:10px;font-weight:500;
-  letter-spacing:.18em;text-transform:uppercase;
-  color:var(--dimmer);
-  margin-bottom:24px;
-}
- 
-/* skill */
-.skill{margin-bottom:16px}
-.skill:last-child{margin-bottom:0}
-.sk-row{display:flex;justify-content:space-between;margin-bottom:7px}
-.sk-name{font-size:13px;color:var(--text);font-weight:400}
-.sk-lv{font-size:11px;color:var(--dimmer)}
-.sk-track{height:1px;background:var(--line2);position:relative}
-.sk-fill{
-  position:absolute;left:0;top:0;height:100%;
-  background:var(--gold);
-  transform:scaleX(0);transform-origin:left;
-  animation:fillbar .9s ease forwards;
-}
-@keyframes fillbar{to{transform:scaleX(1)}}
- 
-/* edu */
-.edu{padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid var(--line)}
-.edu:last-child{border:none;padding:0;margin:0}
-.edu-yr{font-size:11px;color:var(--gold);letter-spacing:.1em;margin-bottom:5px;font-weight:500}
-.edu-ti{
-  font-family:'Fraunces',serif;
-  font-size:16px;font-weight:400;
-  color:var(--bright);margin-bottom:4px;letter-spacing:-.01em;
-}
-.edu-sc{font-size:12px;color:var(--dimmer);font-weight:300;line-height:1.55}
- 
-/* tags */
-.tags{display:flex;flex-wrap:wrap;gap:8px}
-.tag{
-  font-size:12px;font-weight:400;
-  padding:7px 16px;border-radius:100px;
-  border:1px solid var(--line2);
-  color:var(--dim);
-  letter-spacing:.03em;
-  transition:border-color .2s,color .2s;
-  cursor:default;
-}
-.tag:hover{border-color:var(--gold2);color:var(--text)}
- 
-/* lingue */
-.lang-row{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:13px 0;border-bottom:1px solid var(--line);
-  font-size:14px;
-}
-.lang-row:last-child{border:none}
-.ln{color:var(--text);font-weight:400}
-.ll{
-  font-size:11px;font-weight:500;letter-spacing:.1em;
+.avatar img{width:100%;height:100%;object-fit:cover}
+
+/* sezioni */
+.page{max-width:900px;margin:auto;padding:40px}
+
+.sec{margin:60px 0}
+
+.sec-title{
+  font-size:12px;
+  letter-spacing:.2em;
   color:var(--gold);
-  background:var(--gold-dim);
-  padding:3px 10px;border-radius:100px;
+  margin-bottom:20px;
 }
- 
-/* info rows */
-.inf{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:12px 0;border-bottom:1px solid var(--line);
-  font-size:13px;
+
+/* terminale */
+.terminal{
+  background:#000;
+  padding:20px;
+  font-family:monospace;
+  color:#9effa1;
+  border:1px solid var(--line);
 }
-.inf:last-child{border:none}
-.inf-k{color:var(--dimmer);font-weight:300}
-.inf-v{color:var(--text)}
- 
-/* ══ FOOTER ══ */
+
+/* progetti */
+.card{
+  border:1px solid var(--line);
+  padding:20px;
+  margin-bottom:20px;
+  background:var(--bg1);
+}
+
+.card h3{margin-bottom:10px}
+
+/* skills */
+.skill{margin-bottom:15px}
+.bar{
+  height:6px;
+  background:var(--line);
+}
+.fill{
+  height:100%;
+  background:var(--gold);
+}
+
+/* footer */
 footer{
-  border-top:1px solid var(--line);
-  padding:32px 40px;
-  display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:12px;
-  font-size:12px;color:var(--dimmer);
-  letter-spacing:.04em;
+  text-align:center;
+  padding:40px;
+  font-size:12px;
+  color:var(--dim);
 }
-@media(max-width:640px){footer{padding:28px 24px;flex-direction:column;text-align:center}}
- 
-/* ══ ANIMAZIONI ══ */
-@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-.fi{opacity:0;animation:up .6s ease forwards}
-.d1{animation-delay:.05s}.d2{animation-delay:.12s}
-.d3{animation-delay:.19s}.d4{animation-delay:.26s}
 </style>
 </head>
+
 <body>
- 
-<!-- ══ HERO ══ -->
+
 <section class="hero">
-  <div class="hero-bg-name">Davide</div>
- 
-  <div class="hero-inner">
-    <div class="hero-left">
-      <p class="hero-eyebrow">Curriculum Vitae</p>
-      <h1 class="hero-name">Davide<br><em>Iacuzio</em></h1>
-      <p class="hero-role">Tecnico Sistemi Elettrico-Elettronici · Montatore Quadri · Controllo Qualità</p>
-    </div>
-    <div class="hero-right">
-      <div class="avatar">
-        <!--
-          ══════════════════════════════════════
-          FOTO: sostituisci il div .avatar-ph con:
-          <img src="foto.jpg" alt="Davide Iacuzio">
-          Stessa cartella dell'HTML.
-          Foto verticale, viso centrato.
-          ══════════════════════════════════════
-        -->
-        <div class= img scr="https://github.com/davideiacuzio005-source/davide-iacuzioCV/blob/main/fotoCV.png?raw=true" alt="Davide Iacuzio">
-          <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
-          <span>Iacuzio Davide</span>
-        </div>
-      </div>
-    </div>
-  </div>
- 
-  <div class="hero-rule"><hr></div>
- 
-  <div class="hero-contacts">
-    <a href="tel:+393317695902" class="hc"><div class="hc-dot"></div>+39 331 769 5902</a>
-    <a href="mailto:davideiacuzio005@gmail.com" class="hc"><div class="hc-dot"></div>davideiacuzio005@gmail.com</a>
-    <div class="hc"><div class="hc-dot"></div>Codemondo (RE), Italia</div>
-    <div class="hc"><div class="hc-dot"></div>Patente B</div>
+  <h1 class="hero-name">Davide Iacuzio</h1>
+  <p class="hero-role">
+    Junior Developer appassionato di programmazione, automazione e sistemi.<br>
+    In crescita continua nel mondo dello sviluppo software.
+  </p>
+
+  <div class="avatar">
+    <img src="https://github.com/davideiacuzio005-source/davide-iacuzioCV/blob/main/fotoCV.png?raw=true">
   </div>
 </section>
- 
-<!-- ══ CONTENUTO ══ -->
+
 <div class="page">
- 
-  <!-- ESPERIENZA -->
-  <section class="sec">
-    <div class="sec-head">
-      <span class="sec-label">Esperienza</span>
-      <div class="sec-rule"></div>
-      <span class="sec-num">01</span>
-    </div>
- 
-    <div class="exp-item d1">
-      <div class="exp-main">
-        <div class="exp-title">Montatore Quadri Elettrici</div>
-        <div class="exp-co"><span class="exp-co-sep"></span>Electric Evolution · Cavriago (RE)</div>
-        <ul class="exp-bullets">
-          <li>Preparazione manuale e spellatura di cavi elettrici</li>
-          <li>Cablaggio e collegamento di componenti elettrici ed elettronici su macchine e quadri</li>
-          <li>Lavoro svolto in piena autonomia seguendo istruzioni tecniche</li>
-        </ul>
-      </div>
-      <div class="exp-meta">
-        <span class="exp-period">Mag – Ago 2024</span>
-      </div>
-    </div>
- 
-    <div class="exp-item d2">
-      <div class="exp-main">
-        <div class="exp-title">Operatore Controllo Qualità</div>
-        <div class="exp-co"><span class="exp-co-sep"></span>Walvoil S.p.A. · Bibbiano (RE)</div>
-        <ul class="exp-bullets">
-          <li>Controlli dimensionali e visivi su pezzi meccanici con strumenti di misura</li>
-          <li>Verifica della conformità agli standard tecnici e alle specifiche di disegno</li>
-          <li>Registrazione risultati e segnalazione non conformità alla produzione</li>
-        </ul>
-      </div>
-      <div class="exp-meta">
-        <span class="exp-period">Apr – Mag 2023</span>
-      </div>
-    </div>
- 
-    <div class="exp-item d3">
-      <div class="exp-main">
-        <div class="exp-title">Pizzaiolo &amp; Cameriere</div>
-        <div class="exp-co"><span class="exp-co-sep"></span>Ristorante Pizzeria Paradise · Cavriago (RE)</div>
-        <ul class="exp-bullets">
-          <li>Preparazione ingredienti, farcitura e assistenza alla cottura delle pizze</li>
-          <li>Accoglienza clienti, gestione ordinazioni, servizio e conto</li>
-          <li>Lavoro costante in team e a contatto diretto con il pubblico</li>
-        </ul>
-      </div>
-      <div class="exp-meta">
-        <span class="exp-period">2021 – 2025</span>
-      </div>
-    </div>
-  </section>
- 
-  <!-- SKILL + FORMAZIONE -->
-  <section class="sec fi d1">
-    <div class="sec-head">
-      <span class="sec-label">Competenze &amp; Formazione</span>
-      <div class="sec-rule"></div>
-      <span class="sec-num">02</span>
-    </div>
-    <div class="g2">
-      <div class="panel">
-        <div class="panel-title">Competenze tecniche</div>
-        <div class="skill">
-          <div class="sk-row"><span class="sk-name">Cablaggio macchine</span><span class="sk-lv">Avanzato</span></div>
-          <div class="sk-track"><div class="sk-fill" style="width:88%"></div></div>
-        </div>
-        <div class="skill">
-          <div class="sk-row"><span class="sk-name">Lettura schemi funzionali</span><span class="sk-lv">Buono</span></div>
-          <div class="sk-track"><div class="sk-fill" style="width:75%;animation-delay:.12s"></div></div>
-        </div>
-        <div class="skill">
-          <div class="sk-row"><span class="sk-name">Strumenti di misura</span><span class="sk-lv">Buono</span></div>
-          <div class="sk-track"><div class="sk-fill" style="width:72%;animation-delay:.2s"></div></div>
-        </div>
-        <div class="skill">
-          <div class="sk-row"><span class="sk-name">Controllo qualità</span><span class="sk-lv">Intermedio</span></div>
-          <div class="sk-track"><div class="sk-fill" style="width:65%;animation-delay:.28s"></div></div>
-        </div>
-        <div class="skill">
-          <div class="sk-row"><span class="sk-name">Linguaggio Ladder</span><span class="sk-lv">Base</span></div>
-          <div class="sk-track"><div class="sk-fill" style="width:40%;animation-delay:.36s"></div></div>
-        </div>
-      </div>
-      <div class="panel">
-        <div class="panel-title">Formazione</div>
-        <div class="edu">
-          <div class="edu-yr">2019 – 2025</div>
-          <div class="edu-ti">Diploma Scuola Superiore</div>
-          <div class="edu-sc">Manutenzione e Assistenza Tecnica<br>Istituto Silvio D'Arzo · Montecchio Emilia</div>
-        </div>
-        <div class="edu">
-          <div class="edu-yr">Qualifica EQF 3</div>
-          <div class="edu-ti">Operatore Sistemi Elettrico-Elettronici</div>
-          <div class="edu-sc">Istituto Silvio D'Arzo · Montecchio Emilia</div>
-        </div>
-      </div>
-    </div>
-  </section>
- 
-  <!-- QUALITÀ + LINGUE -->
-  <section class="sec fi d2">
-    <div class="sec-head">
-      <span class="sec-label">Qualità &amp; Lingue</span>
-      <div class="sec-rule"></div>
-      <span class="sec-num">03</span>
-    </div>
-    <div class="g2">
-      <div class="panel">
-        <div class="panel-title">Qualità personali</div>
-        <div class="tags">
-          <span class="tag">Precisione manuale</span>
-          <span class="tag">Autonomia operativa</span>
-          <span class="tag">Lavoro in team</span>
-          <span class="tag">Problem solving</span>
-          <span class="tag">Relazione col cliente</span>
-          <span class="tag">Affidabilità</span>
-          <span class="tag">Puntualità</span>
-        </div>
-      </div>
-      <div class="panel">
-        <div class="panel-title">Lingue &amp; Info</div>
-        <div class="lang-row"><span class="ln">Italiano</span><span class="ll">Madrelingua</span></div>
-        <div class="lang-row"><span class="ln">Inglese</span><span class="ll">B1</span></div>
-        <div style="height:16px"></div>
-        <div class="inf"><span class="inf-k">Data di nascita</span><span class="inf-v">08/02/2006</span></div>
-        <div class="inf"><span class="inf-k">Patente</span><span class="inf-v">Categoria B</span></div>
-        <div class="inf"><span class="inf-k">Residenza</span><span class="inf-v">Codemondo (RE)</span></div>
-      </div>
-    </div>
-  </section>
- 
+
+<!-- TERMINALE -->
+<section class="sec">
+  <div class="sec-title">DEVELOPER</div>
+  <div class="terminal">
+$ whoami <br>
+> davide_iacuzio <br><br>
+
+$ skills <br>
+> HTML, CSS, JavaScript <br>
+> PLC Ladder <br>
+> Elettronica <br><br>
+
+$ goal <br>
+> diventare sviluppatore software
+  </div>
+</section>
+
+<!-- PROGETTI -->
+<section class="sec">
+  <div class="sec-title">PROGETTI</div>
+
+  <div class="card">
+    <h3>Sito Portfolio</h3>
+    <p>Realizzazione di un sito personale responsive con HTML e CSS.</p>
+  </div>
+
+  <div class="card">
+    <h3>Progetti futuri</h3>
+    <p>In sviluppo: applicazioni web e automazioni.</p>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="sec">
+  <div class="sec-title">COMPETENZE</div>
+
+  <div class="skill">
+    HTML / CSS
+    <div class="bar"><div class="fill" style="width:75%"></div></div>
+  </div>
+
+  <div class="skill">
+    JavaScript
+    <div class="bar"><div class="fill" style="width:50%"></div></div>
+  </div>
+
+  <div class="skill">
+    Problem Solving
+    <div class="bar"><div class="fill" style="width:70%"></div></div>
+  </div>
+
+</section>
+
 </div>
- 
+
 <footer>
-  <span>© 2025 Davide Iacuzio</span>
-  <span>Autorizzo il trattamento dei dati personali ai sensi del GDPR 679/16</span>
+© 2025 Davide Iacuzio — Developer Portfolio
 </footer>
- 
+
 </body>
 </html>
