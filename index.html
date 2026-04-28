@@ -3,195 +3,917 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Davide Iacuzio | Developer</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-
+<title>Davide Iacuzio — Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
+ 
 :root{
-  --bg:#0b0b0b;
-  --bg1:#111;
-  --line:#1f1f1f;
-  --gold:#C9973A;
-  --text:#d4d4d4;
-  --bright:#fff;
-  --dim:#888;
+  --bg:       #08090A;
+  --surface:  #0F1114;
+  --surface2: #161A1E;
+  --border:   #1E2329;
+  --border2:  #252C35;
+  --accent:   #4F8EF7;
+  --accent2:  #3B6FD4;
+  --green:    #34C97A;
+  --text:     #C8D0DA;
+  --muted:    #5C6B7A;
+  --dim:      #3A4554;
+  --white:    #EEF2F7;
+  --r:        12px;
+  --max:      860px;
 }
-
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.6;
+ 
+html { scroll-behavior: smooth; }
+ 
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
-
-/* effetto monitor */
-body::after{
-  content:'';
-  position:fixed;
-  inset:0;
-  background:linear-gradient(rgba(0,255,120,0.03) 1px, transparent 1px);
-  background-size:100% 2px;
-  pointer-events:none;
+ 
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  background: rgba(8,9,10,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
 }
-
-/* HERO */
-.hero{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:40px;
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: -.01em;
 }
-
-.hero-name{
-  font-size:70px;
-  font-family:'Fraunces',serif;
+.nav-logo span { color: var(--accent); }
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
 }
-
-.hero-role{
-  margin-top:20px;
-  color:var(--dim);
-  max-width:500px;
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color .2s;
+  letter-spacing: .01em;
 }
-
-.avatar{
-  margin-top:30px;
-  width:120px;height:120px;
-  border-radius:50%;
-  overflow:hidden;
-  border:1px solid var(--line);
+.nav-links a:hover { color: var(--white); }
+@media(max-width:600px){
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
 }
-.avatar img{width:100%;height:100%;object-fit:cover}
-
-/* sezioni */
-.page{max-width:900px;margin:auto;padding:40px}
-
-.sec{margin:60px 0}
-
-.sec-title{
-  font-size:12px;
-  letter-spacing:.2em;
-  color:var(--gold);
-  margin-bottom:20px;
+ 
+/* ─── HERO ─── */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 100px 40px 80px;
+  position: relative;
+  overflow: hidden;
 }
-
-/* terminale */
-.terminal{
-  background:#000;
-  padding:20px;
-  font-family:monospace;
-  color:#9effa1;
-  border:1px solid var(--line);
+ 
+/* griglia di punti in background */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(79,142,247,0.12) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse 70% 70% at 80% 50%, black 0%, transparent 100%);
+  pointer-events: none;
 }
-
-/* progetti */
-.card{
-  border:1px solid var(--line);
-  padding:20px;
-  margin-bottom:20px;
-  background:var(--bg1);
+ 
+.hero-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
 }
-
-.card h3{margin-bottom:10px}
-
-/* skills */
-.skill{margin-bottom:15px}
-.bar{
-  height:6px;
-  background:var(--line);
+ 
+.hero-text { flex: 1; }
+ 
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border2);
+  background: var(--surface);
+  border-radius: 100px;
+  padding: 6px 14px 6px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 28px;
+  letter-spacing: .03em;
+  opacity: 0;
+  animation: fadeUp .6s .05s ease forwards;
 }
-.fill{
-  height:100%;
-  background:var(--gold);
+.badge-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
 }
-
-/* footer */
-footer{
-  text-align:center;
-  padding:40px;
-  font-size:12px;
-  color:var(--dim);
+ 
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(44px, 7vw, 76px);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -.03em;
+  line-height: .97;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp .6s .15s ease forwards;
 }
+h1 .accent { color: var(--accent); }
+ 
+.hero-sub {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 420px;
+  line-height: 1.75;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp .6s .25s ease forwards;
+}
+ 
+.hero-cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp .6s .35s ease forwards;
+}
+ 
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all .2s;
+  letter-spacing: .01em;
+  cursor: pointer;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid var(--accent);
+}
+.btn-primary:hover { background: var(--accent2); border-color: var(--accent2); }
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border2);
+}
+.btn-secondary:hover { border-color: var(--muted); color: var(--white); }
+ 
+/* foto hero */
+.hero-photo {
+  flex-shrink: 0;
+  opacity: 0;
+  animation: fadeUp .6s .4s ease forwards;
+}
+.avatar-frame {
+  width: 200px; height: 200px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border2);
+  background: var(--surface2);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* glow angolo */
+.avatar-frame::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(79,142,247,.3) 0%, transparent 50%);
+  pointer-events: none;
+}
+.avatar-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.avatar-ph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px;
+  text-align: center;
+}
+.avatar-ph svg { width: 40px; height: 40px; fill: var(--dim); }
+.avatar-ph p {
+  font-size: 11px;
+  color: var(--dim);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+ 
+@media(max-width:640px){
+  .hero { padding: 90px 20px 60px; }
+  .hero-inner { flex-direction: column-reverse; align-items: flex-start; gap: 32px; }
+  .avatar-frame { width: 88px; height: 88px; border-radius: 50%; }
+  .avatar-frame::before { border-radius: 50%; }
+}
+ 
+/* ─── STAT ROW ─── */
+.stats {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.stats-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+@media(max-width:600px){
+  .stats-inner { grid-template-columns: 1fr; padding: 0 20px; }
+  .stat { border-right: none !important; border-bottom: 1px solid var(--border); }
+  .stat:last-child { border-bottom: none; }
+}
+.stat {
+  padding: 28px 0;
+  border-right: 1px solid var(--border);
+  padding-left: 32px;
+}
+.stat:last-child { border-right: none; }
+.stat-n {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -.03em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-n span { color: var(--accent); }
+.stat-l { font-size: 13px; color: var(--muted); font-weight: 400; }
+ 
+/* ─── LAYOUT SEZIONI ─── */
+.page {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+@media(max-width:640px){ .page { padding: 0 20px; } }
+ 
+section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+section:last-child { border-bottom: none; }
+ 
+.sec-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.sec-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.sec-rule { flex: 1; height: 1px; background: var(--border2); }
+.sec-idx { font-size: 11px; color: var(--dim); letter-spacing: .06em; }
+ 
+/* ─── ABOUT / TERMINALE ─── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 48px;
+  align-items: start;
+}
+@media(max-width:700px){ .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+ 
+.about-text p {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.about-text p:last-child { margin-bottom: 0; }
+.hl { color: var(--white); font-weight: 500; }
+ 
+/* terminale compatto */
+.terminal {
+  background: #0C0E10;
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  overflow: hidden;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 13px;
+}
+.term-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 16px;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+}
+.term-dot { width: 11px; height: 11px; border-radius: 50%; }
+.term-dot:nth-child(1){ background:#FF5F57 }
+.term-dot:nth-child(2){ background:#FEBC2E }
+.term-dot:nth-child(3){ background:#28C840 }
+.term-title { font-size: 11px; color: var(--dim); margin: 0 auto; }
+.term-body { padding: 18px 20px; line-height: 2; }
+.t-prompt { color: var(--green); }
+.t-cmd    { color: var(--white); margin-left: 6px; }
+.t-out    { color: var(--muted); padding-left: 14px; display: block; }
+.t-key    { color: var(--accent); }
+.t-val    { color: #E8956D; }
+.t-gap    { display: block; height: 6px; }
+ 
+/* ─── SKILLS ─── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+@media(max-width:600px){ .skills-grid { grid-template-columns: 1fr; } }
+ 
+.skill-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 20px 22px;
+  transition: border-color .2s;
+}
+.skill-card:hover { border-color: var(--border2); }
+.sk-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.sk-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sk-icon {
+  width: 30px; height: 30px;
+  border-radius: 7px;
+  background: var(--surface2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+.sk-pct { font-size: 12px; color: var(--dim); font-weight: 500; }
+.sk-bar {
+  height: 3px;
+  background: var(--border2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.sk-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: bar 1s ease forwards;
+}
+@keyframes bar { to { transform: scaleX(1); } }
+.sk-note { font-size: 12px; color: var(--dim); margin-top: 8px; font-weight: 300; }
+ 
+/* tech pills */
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 32px;
+}
+.tech {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 13px;
+  border-radius: 6px;
+  border: 1px solid var(--border2);
+  background: var(--surface);
+  color: var(--muted);
+  letter-spacing: .02em;
+  transition: border-color .2s, color .2s;
+}
+.tech:hover { border-color: var(--accent); color: var(--accent); }
+.tech-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+ 
+/* ─── EXPERIENCE ─── */
+.exp-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 32px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+}
+.exp-item:first-child { padding-top: 0; }
+.exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+@media(max-width:580px){
+  .exp-item { grid-template-columns: 1fr; gap: 12px; }
+}
+ 
+.exp-time {
+  font-size: 12px;
+  color: var(--dim);
+  font-weight: 400;
+  letter-spacing: .03em;
+  padding-top: 3px;
+  line-height: 1.5;
+}
+.exp-time strong {
+  display: block;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+ 
+.exp-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 6px;
+  letter-spacing: -.01em;
+}
+.exp-company {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.exp-company::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 1px;
+  background: currentColor;
+  opacity: .5;
+}
+.exp-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.exp-bullets li {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.6;
+}
+.exp-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 10px;
+  width: 6px; height: 1px;
+  background: var(--accent);
+  opacity: .6;
+}
+ 
+/* ─── CONTATTI ─── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+@media(max-width:560px){ .contact-grid { grid-template-columns: 1fr; } }
+ 
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 20px 22px;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color .2s, background .2s;
+}
+.contact-card:hover {
+  border-color: var(--accent);
+  background: var(--surface2);
+}
+.contact-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.contact-icon svg { width: 18px; height: 18px; fill: var(--accent); }
+.contact-label { font-size: 11px; color: var(--dim); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 3px; }
+.contact-value { font-size: 14px; color: var(--white); font-weight: 500; }
+ 
+/* ─── EDUCATION STRIP ─── */
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+@media(max-width:560px){ .edu-grid { grid-template-columns: 1fr; } }
+ 
+.edu-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 24px;
+}
+.edu-yr {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.edu-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 6px;
+  letter-spacing: -.01em;
+  line-height: 1.3;
+}
+.edu-school { font-size: 13px; color: var(--dim); font-weight: 300; line-height: 1.5; }
+ 
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  padding: 36px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+@media(max-width:600px){ footer { padding: 28px 20px; flex-direction: column; text-align: center; } }
+.footer-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+}
+.footer-name span { color: var(--accent); }
+.footer-copy { font-size: 12px; color: var(--dim); }
+ 
+/* ─── ANIMAZIONI ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+.fi { opacity: 0; animation: fadeUp .6s ease forwards; }
+.d1{animation-delay:.05s}.d2{animation-delay:.12s}
+.d3{animation-delay:.19s}.d4{animation-delay:.26s}
 </style>
 </head>
-
 <body>
-
-<section class="hero">
-  <h1 class="hero-name">Davide Iacuzio</h1>
-  <p class="hero-role">
-    Junior Developer appassionato di programmazione, automazione e sistemi.<br>
-    In crescita continua nel mondo dello sviluppo software.
-  </p>
-
-  <div class="avatar">
-    <img src="https://github.com/davideiacuzio005-source/davide-iacuzioCV/blob/main/fotoCV.png?raw=true">
+ 
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">davide<span>.</span>dev</div>
+  <ul class="nav-links">
+    <li><a href="#about">Chi sono</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Esperienza</a></li>
+    <li><a href="#contact">Contatti</a></li>
+  </ul>
+</nav>
+ 
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <div class="badge-dot"></div>
+        Junior Developer & Tecnico Elettronico
+      </div>
+      <h1>Davide<br><span class="accent">Iacuzio</span></h1>
+      <p class="hero-sub">
+        Appassionato di sviluppo web e sistemi elettronici. Unisco la precisione del mondo tecnico-industriale alla voglia di costruire esperienze digitali.
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Contattami</a>
+        <a href="#experience" class="btn btn-secondary">Vedi esperienza</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="avatar-frame">
+        <!--
+          ════════════════════════════════════
+          FOTO: sostituisci il div .avatar-ph con:
+          <img src="foto.jpg" alt="Davide Iacuzio">
+          Metti foto.jpg nella stessa cartella.
+          ════════════════════════════════════
+        -->
+        <img src="https://github.com/davideiacuzio005-source/davide-iacuzioCV/blob/main/fotoCV.png?raw=true" alt="Davide Iacuzio">
+      </div>
+    </div>
   </div>
-</section>
-
-<div class="page">
-
-<!-- TERMINALE -->
-<section class="sec">
-  <div class="sec-title">DEVELOPER</div>
-  <div class="terminal">
-$ whoami <br>
-> davide_iacuzio <br><br>
-
-$ skills <br>
-> HTML, CSS, JavaScript <br>
-> PLC Ladder <br>
-> Elettronica <br><br>
-
-$ goal <br>
-> diventare sviluppatore software
+</header>
+ 
+<!-- STAT BAR -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat fi d1">
+      <div class="stat-n">4<span>+</span></div>
+      <div class="stat-l">anni di esperienza lavorativa</div>
+    </div>
+    <div class="stat fi d2">
+      <div class="stat-n">3</div>
+      <div class="stat-l">aziende in settori diversi</div>
+    </div>
+    <div class="stat fi d3">
+      <div class="stat-n">EQF<span> 3</span></div>
+      <div class="stat-l">qualifica sistemi elettronici</div>
+    </div>
   </div>
-</section>
-
-<!-- PROGETTI -->
-<section class="sec">
-  <div class="sec-title">PROGETTI</div>
-
-  <div class="card">
-    <h3>Sito Portfolio</h3>
-    <p>Realizzazione di un sito personale responsive con HTML e CSS.</p>
-  </div>
-
-  <div class="card">
-    <h3>Progetti futuri</h3>
-    <p>In sviluppo: applicazioni web e automazioni.</p>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section class="sec">
-  <div class="sec-title">COMPETENZE</div>
-
-  <div class="skill">
-    HTML / CSS
-    <div class="bar"><div class="fill" style="width:75%"></div></div>
-  </div>
-
-  <div class="skill">
-    JavaScript
-    <div class="bar"><div class="fill" style="width:50%"></div></div>
-  </div>
-
-  <div class="skill">
-    Problem Solving
-    <div class="bar"><div class="fill" style="width:70%"></div></div>
-  </div>
-
-</section>
-
 </div>
-
+ 
+<!-- ABOUT -->
+<div class="page">
+<section id="about">
+  <div class="sec-head">
+    <span class="sec-label">Chi sono</span>
+    <div class="sec-rule"></div>
+    <span class="sec-idx">01</span>
+  </div>
+  <div class="about-grid">
+    <div class="about-text fi d1">
+      <p>
+        Sono <span class="hl">Davide Iacuzio</span>, 19 anni, tecnico diplomato in Manutenzione e Assistenza Tecnica con una forte propensione verso lo sviluppo software e il web.
+      </p>
+      <p>
+        Ho maturato esperienza pratica nel <span class="hl">cablaggio di quadri elettrici</span>, nel <span class="hl">controllo qualità industriale</span> e nella gestione diretta con i clienti. Questo mi ha insegnato precisione, autonomia e capacità di problem solving reale.
+      </p>
+      <p>
+        Oggi sto costruendo le mie competenze nello sviluppo web con <span class="hl">HTML, CSS e JavaScript</span>, portando in questo campo la stessa metodicità che ho imparato sul campo.
+      </p>
+    </div>
+    <div class="fi d2">
+      <div class="terminal">
+        <div class="term-bar">
+          <div class="term-dot"></div>
+          <div class="term-dot"></div>
+          <div class="term-dot"></div>
+          <span class="term-title">profile.json</span>
+        </div>
+        <div class="term-body">
+          <span class="t-out">&#123;</span>
+          <span class="t-out"><span class="t-key">"nome"</span>: <span class="t-val">"Davide Iacuzio"</span>,</span>
+          <span class="t-out"><span class="t-key">"età"</span>: <span class="t-val">19</span>,</span>
+          <span class="t-out"><span class="t-key">"ruolo"</span>: <span class="t-val">"Jr. Developer"</span>,</span>
+          <span class="t-out"><span class="t-key">"città"</span>: <span class="t-val">"Codemondo, RE"</span>,</span>
+          <span class="t-out"><span class="t-key">"lingue"</span>: [</span>
+          <span class="t-out" style="padding-left:28px"><span class="t-val">"Italiano"</span>, <span class="t-val">"Inglese B1"</span></span>
+          <span class="t-out">],</span>
+          <span class="t-out"><span class="t-key">"patente"</span>: <span class="t-val">"B"</span></span>
+          <span class="t-out">&#125;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-head">
+    <span class="sec-label">Competenze</span>
+    <div class="sec-rule"></div>
+    <span class="sec-idx">02</span>
+  </div>
+ 
+  <div class="skills-grid">
+    <div class="skill-card fi d1">
+      <div class="sk-top">
+        <div class="sk-name"><div class="sk-icon">🌐</div>HTML & CSS</div>
+        <span class="sk-pct">75%</span>
+      </div>
+      <div class="sk-bar"><div class="sk-fill" style="width:75%"></div></div>
+      <p class="sk-note">Layout responsive, flexbox/grid, animazioni CSS</p>
+    </div>
+    <div class="skill-card fi d2">
+      <div class="sk-top">
+        <div class="sk-name"><div class="sk-icon">⚡</div>JavaScript</div>
+        <span class="sk-pct">45%</span>
+      </div>
+      <div class="sk-bar"><div class="sk-fill" style="width:45%;animation-delay:.1s"></div></div>
+      <p class="sk-note">DOM manipulation, eventi, logica di base</p>
+    </div>
+    <div class="skill-card fi d3">
+      <div class="sk-top">
+        <div class="sk-name"><div class="sk-icon">🔌</div>Cablaggio Elettrico</div>
+        <span class="sk-pct">88%</span>
+      </div>
+      <div class="sk-bar"><div class="sk-fill" style="width:88%;animation-delay:.15s;background:var(--green)"></div></div>
+      <p class="sk-note">Quadri elettrici, schemi funzionali, automazione</p>
+    </div>
+    <div class="skill-card fi d4">
+      <div class="sk-top">
+        <div class="sk-name"><div class="sk-icon">🔧</div>PLC Ladder</div>
+        <span class="sk-pct">40%</span>
+      </div>
+      <div class="sk-bar"><div class="sk-fill" style="width:40%;animation-delay:.2s"></div></div>
+      <p class="sk-note">Logica ladder, sistemi di controllo industriale</p>
+    </div>
+  </div>
+ 
+  <div class="tech-list fi d2">
+    <span class="tech"><span class="tech-dot"></span>HTML5</span>
+    <span class="tech"><span class="tech-dot"></span>CSS3</span>
+    <span class="tech"><span class="tech-dot"></span>JavaScript</span>
+    <span class="tech"><span class="tech-dot"></span>Git</span>
+    <span class="tech"><span class="tech-dot"></span>Responsive Design</span>
+    <span class="tech"><span class="tech-dot"></span>PLC Ladder</span>
+    <span class="tech"><span class="tech-dot"></span>Lettura schemi</span>
+    <span class="tech"><span class="tech-dot"></span>Strumenti di misura</span>
+  </div>
+</section>
+ 
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-head">
+    <span class="sec-label">Esperienza</span>
+    <div class="sec-rule"></div>
+    <span class="sec-idx">03</span>
+  </div>
+ 
+  <div class="exp-item fi d1">
+    <div class="exp-time">
+      <strong>Mag – Ago 2024</strong>
+      Cavriago (RE)
+    </div>
+    <div>
+      <div class="exp-title">Montatore Quadri Elettrici</div>
+      <div class="exp-company">Electric Evolution</div>
+      <ul class="exp-bullets">
+        <li>Preparazione manuale e spellatura di cavi elettrici</li>
+        <li>Cablaggio e collegamento di componenti su macchine e quadri elettrici</li>
+        <li>Lavoro svolto in piena autonomia seguendo istruzioni tecniche</li>
+      </ul>
+    </div>
+  </div>
+ 
+  <div class="exp-item fi d2">
+    <div class="exp-time">
+      <strong>Apr – Mag 2023</strong>
+      Bibbiano (RE)
+    </div>
+    <div>
+      <div class="exp-title">Operatore Controllo Qualità</div>
+      <div class="exp-company">Walvoil S.p.A.</div>
+      <ul class="exp-bullets">
+        <li>Controlli dimensionali e visivi su pezzi meccanici con strumenti di misura</li>
+        <li>Verifica conformità prodotti agli standard tecnici e alle specifiche di disegno</li>
+        <li>Registrazione risultati e segnalazione non conformità alla produzione</li>
+      </ul>
+    </div>
+  </div>
+ 
+  <div class="exp-item fi d3">
+    <div class="exp-time">
+      <strong>2021 – 2025</strong>
+      Cavriago (RE)
+    </div>
+    <div>
+      <div class="exp-title">Pizzaiolo &amp; Cameriere</div>
+      <div class="exp-company">Ristorante Pizzeria Paradise</div>
+      <ul class="exp-bullets">
+        <li>Preparazione ingredienti e assistenza alla cottura delle pizze</li>
+        <li>Accoglienza clienti, gestione ordinazioni e conto</li>
+        <li>Lavoro costante in team e a diretto contatto con il pubblico</li>
+      </ul>
+    </div>
+  </div>
+</section>
+ 
+<!-- FORMAZIONE -->
+<section id="education">
+  <div class="sec-head">
+    <span class="sec-label">Formazione</span>
+    <div class="sec-rule"></div>
+    <span class="sec-idx">04</span>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card fi d1">
+      <div class="edu-yr">2019 – 2025</div>
+      <div class="edu-title">Diploma di Scuola Superiore</div>
+      <div class="edu-school">Manutenzione e Assistenza Tecnica<br>Istituto Silvio D'Arzo · Montecchio Emilia</div>
+    </div>
+    <div class="edu-card fi d2">
+      <div class="edu-yr">Qualifica EQF 3</div>
+      <div class="edu-title">Operatore Sistemi Elettrico-Elettronici</div>
+      <div class="edu-school">Istituto Silvio D'Arzo · Montecchio Emilia</div>
+    </div>
+  </div>
+</section>
+ 
+<!-- CONTATTI -->
+<section id="contact">
+  <div class="sec-head">
+    <span class="sec-label">Contatti</span>
+    <div class="sec-rule"></div>
+    <span class="sec-idx">05</span>
+  </div>
+  <div class="contact-grid">
+    <a href="tel:+393317695902" class="contact-card fi d1">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.5 11.5 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.5 11.5 0 00.57 3.6 1 1 0 01-.25 1.01l-2.2 2.18z"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">Telefono</div>
+        <div class="contact-value">+39 331 769 5902</div>
+      </div>
+    </a>
+    <a href="mailto:davideiacuzio005@gmail.com" class="contact-card fi d2">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">davideiacuzio005@gmail.com</div>
+      </div>
+    </a>
+    <div class="contact-card fi d3">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">Posizione</div>
+        <div class="contact-value">Codemondo (RE), Italia</div>
+      </div>
+    </div>
+    <div class="contact-card fi d4">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M18 3a3 3 0 013 3v12a3 3 0 01-3 3H6a3 3 0 01-3-3V6a3 3 0 013-3h12zm-5 13v-5h-2v5h2zm-1-7a1 1 0 100-2 1 1 0 000 2zm4 7v-3a2 2 0 00-4 0v3h2v-3h1v3h1z"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">Info</div>
+        <div class="contact-value">Patente B · nato 08/02/2006</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+ 
+<!-- FOOTER -->
 <footer>
-© 2025 Davide Iacuzio — Developer Portfolio
+  <div class="footer-name">davide<span>.</span>dev</div>
+  <div class="footer-copy">Autorizzo il trattamento dei dati personali · GDPR 679/16</div>
 </footer>
-
+ 
 </body>
 </html>
