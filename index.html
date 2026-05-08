@@ -88,7 +88,6 @@ nav {
   overflow: hidden;
 }
  
-/* griglia di punti in background */
 .hero::before {
   content: '';
   position: absolute;
@@ -192,7 +191,6 @@ h1 .accent { color: var(--accent); }
 }
 .btn-secondary:hover { border-color: var(--muted); color: var(--white); }
  
-/* foto hero */
 .hero-photo {
   flex-shrink: 0;
   opacity: 0;
@@ -209,7 +207,6 @@ h1 .accent { color: var(--accent); }
   align-items: center;
   justify-content: center;
 }
-/* glow angolo */
 .avatar-frame::before {
   content: '';
   position: absolute;
@@ -223,22 +220,6 @@ h1 .accent { color: var(--accent); }
   height: 100%;
   object-fit: cover;
   object-position: top center;
-}
-.avatar-ph {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 24px;
-  text-align: center;
-}
-.avatar-ph svg { width: 40px; height: 40px; fill: var(--dim); }
-.avatar-ph p {
-  font-size: 11px;
-  color: var(--dim);
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  line-height: 1.5;
 }
  
 @media(max-width:640px){
@@ -331,7 +312,6 @@ section:last-child { border-bottom: none; }
 .about-text p:last-child { margin-bottom: 0; }
 .hl { color: var(--white); font-weight: 500; }
  
-/* terminale compatto */
 .terminal {
   background: #0C0E10;
   border: 1px solid var(--border2);
@@ -418,7 +398,6 @@ section:last-child { border-bottom: none; }
 @keyframes bar { to { transform: scaleX(1); } }
 .sk-note { font-size: 12px; color: var(--dim); margin-top: 8px; font-weight: 300; }
  
-/* tech pills */
 .tech-list {
   display: flex;
   flex-wrap: wrap;
@@ -517,6 +496,151 @@ section:last-child { border-bottom: none; }
   width: 6px; height: 1px;
   background: var(--accent);
   opacity: .6;
+}
+ 
+/* ─── PROGETTI ─── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+@media(max-width:600px){ .projects-grid { grid-template-columns: 1fr; } }
+ 
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color .2s, background .2s;
+}
+.project-card:hover {
+  border-color: var(--border2);
+  background: var(--surface2);
+}
+ 
+.project-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+ 
+.project-icon {
+  width: 36px; height: 36px;
+  border-radius: 9px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+ 
+.project-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(79,142,247,.1);
+  border: 1px solid rgba(79,142,247,.2);
+  border-radius: 100px;
+  padding: 3px 10px;
+}
+ 
+.project-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: -.01em;
+  line-height: 1.3;
+}
+ 
+.project-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.7;
+  flex: 1;
+}
+ 
+.project-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 4px;
+}
+ 
+.project-techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+ 
+.project-tech-pill {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--dim);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 8px;
+  letter-spacing: .03em;
+}
+ 
+/*
+  ══════════════════════════════════════════════════════════════
+  PULSANTE "VISUALIZZA"
+  
+  Attualmente href="https://..." apre un link esterno.
+  
+  ➜ PER APRIRE UN FILE HTML LOCALE (es. "progetto1.html"):
+  
+    1. Metti "progetto1.html" nella STESSA cartella di questo file.
+    2. Cambia l'href così:
+         href="progetto1.html"
+       oppure, se è in una sottocartella:
+         href="progetti/progetto1.html"
+    
+    Esempio completo:
+      <a href="progetto1.html" class="btn-view" target="_blank">
+        Visualizza
+        <svg ...>...</svg>
+      </a>
+  
+  ➜ target="_blank"  = si apre in una nuova scheda (consigliato)
+  ➜ target="_self"   = si apre nella stessa scheda
+  ══════════════════════════════════════════════════════════════
+*/
+.btn-view {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid rgba(79,142,247,.3);
+  border-radius: 6px;
+  padding: 6px 13px;
+  background: rgba(79,142,247,.06);
+  transition: background .2s, border-color .2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.btn-view:hover {
+  background: rgba(79,142,247,.14);
+  border-color: var(--accent);
+}
+.btn-view svg {
+  width: 12px; height: 12px;
+  fill: currentColor;
 }
  
 /* ─── CONTATTI ─── */
@@ -629,6 +753,7 @@ footer {
   <ul class="nav-links">
     <li><a href="#about">Chi sono</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Progetti</a></li>
     <li><a href="#experience">Esperienza</a></li>
     <li><a href="#contact">Contatti</a></li>
   </ul>
@@ -653,13 +778,6 @@ footer {
     </div>
     <div class="hero-photo">
       <div class="avatar-frame">
-        <!--
-          ════════════════════════════════════
-          FOTO: sostituisci il div .avatar-ph con:
-          <img src="foto.jpg" alt="Davide Iacuzio">
-          Metti foto.jpg nella stessa cartella.
-          ════════════════════════════════════
-        -->
         <img src="https://github.com/davideiacuzio005-source/davide-iacuzioCV/blob/main/fotoCV.png?raw=true" alt="Davide Iacuzio">
       </div>
     </div>
@@ -785,12 +903,83 @@ footer {
   </div>
 </section>
  
+<!-- PROGETTI -->
+<section id="projects">
+  <div class="sec-head">
+    <span class="sec-label">Progetti</span>
+    <div class="sec-rule"></div>
+    <span class="sec-idx">03</span>
+  </div>
+ 
+  <div class="projects-grid">
+ 
+    <!-- ───────────────────────────────────────────────────────
+         PROGETTO 1
+         Per aprire un file HTML locale invece di un link:
+           href="nome-del-file.html"
+         Metti il file nella stessa cartella di questo CV.
+         Esempio: href="progetto-sito.html"
+    ─────────────────────────────────────────────────────────── -->
+    <div class="project-card fi d1">
+      <div class="project-top">
+        <div class="project-icon">🌐</div>
+        <span class="project-tag">Web</span>
+      </div>
+      <div class="project-title">Code League</div>
+      <div class="project-desc">
+        Sito web per un torneo di Calcio a 5.
+      </div>
+      <div class="project-footer">
+        <div class="project-techs">
+          <span class="project-tech-pill">HTML</span>
+          <span class="project-tech-pill">CSS</span>
+          <span class="project-tech-pill">JS</span>
+        </div>
+        <!-- CAMBIA href con il tuo link o percorso file -->
+        <a href="https://mdtechsolv.github.io/codeleague/index.html" class="btn-view" target="_blank">
+          Visualizza
+          <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/></svg>
+        </a>
+      </div>
+    </div>
+ 
+    <!-- ───────────────────────────────────────────────────────
+         PROGETTO 2
+    ─────────────────────────────────────────────────────────── -->
+    <div class="project-card fi d2">
+      <div class="project-top">
+        <div class="project-icon">⚙️</div>
+        <span class="project-tag">Automazione</span>
+      </div>
+      <div class="project-title">Controllo PLC — Nastro trasportatore</div>
+      <div class="project-desc">
+        Progetto scolastico ITS: logica ladder per la gestione di un nastro trasportatore con sensori di fine corsa e arresto d'emergenza.
+      </div>
+      <div class="project-footer">
+        <div class="project-techs">
+          <span class="project-tech-pill">PLC</span>
+          <span class="project-tech-pill">Ladder</span>
+        </div>
+        <!-- CAMBIA href con il tuo link o percorso file -->
+        <a href="https://tuosito.com" class="btn-view" target="_blank">
+          Visualizza
+          <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/></svg>
+        </a>
+      </div>
+    </div>
+
+
+   
+ 
+  </div>
+</section>
+ 
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="sec-head">
     <span class="sec-label">Esperienza</span>
     <div class="sec-rule"></div>
-    <span class="sec-idx">03</span>
+    <span class="sec-idx">04</span>
   </div>
  
   <div class="exp-item fi d1">
@@ -863,7 +1052,7 @@ footer {
   <div class="sec-head">
     <span class="sec-label">Formazione</span>
     <div class="sec-rule"></div>
-    <span class="sec-idx">04</span>
+    <span class="sec-idx">05</span>
   </div>
   <div class="edu-grid">
     <div class="edu-card fi d1" style="border-color: var(--accent); position:relative; overflow:hidden;">
@@ -899,7 +1088,7 @@ footer {
   <div class="sec-head">
     <span class="sec-label">Contatti</span>
     <div class="sec-rule"></div>
-    <span class="sec-idx">05</span>
+    <span class="sec-idx">06</span>
   </div>
   <div class="contact-grid">
     <a href="tel:+393317695902" class="contact-card fi d1">
