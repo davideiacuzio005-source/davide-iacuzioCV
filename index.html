@@ -4,7 +4,7 @@
 <title>L’Officina della Pizza – Pizza d’asporto</title>
 <meta name="description" content="Pizza d’asporto: oltre 50 pizze, calzoni, panuozzi e mezzi metri. Chiama lo 0522 777020 e passa a ritirare.">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Restaurant","name":"L’Officina della Pizza","telephone":"+390522777020","servesCuisine":"Pizza","hasMenu":"#menu"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Restaurant","name":"L’Officina della Pizza","telephone":"+390522777020","servesCuisine":"Pizza","hasMenu":"#menu","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Wednesday","Thursday","Friday"],"opens":"12:00","closes":"14:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Wednesday","Thursday","Friday"],"opens":"18:00","closes":"22:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday"],"opens":"18:00","closes":"22:00"}]}</script>
 <style>
 :root{--orange:#FF6A00;--black:#000;--white:#fff;--bg:#fff;--fg:#000;--muted:#555;--line:#000;--field:#f3f3f3;
 --display:'Anton','Impact','Arial Narrow',sans-serif;--body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
@@ -53,6 +53,11 @@ section{padding:80px 0}section h2{font-size:clamp(40px,6vw,72px);margin-bottom:1
 :root[data-theme="dark"] .dark-btn{border-color:var(--white)}
 @media(prefers-color-scheme:dark){.dark-btn{border-color:var(--white)}}
 @media(max-width:800px){.info{grid-template-columns:1fr}}
+.hours{width:100%;max-width:560px;border-collapse:collapse}
+.hours th,.hours td{padding:14px 0;border-bottom:2px solid var(--line);text-align:left}
+.hours th{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:24px}
+.hours td{text-align:right;font-weight:500}
+.hours .off th,.hours .off td{color:var(--muted)}
 footer{background:var(--black);color:var(--white);padding:28px 0;font-weight:500}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 .callbar{display:none}
@@ -102,6 +107,20 @@ body.is-menu #homeview{display:none}body.is-menu #menuview{display:block}
 <h3>Pizza Novembre</h3><span class="price">9,00 €</span>
 <p>Fior di latte, gorgonzola, crema di zucca, pancetta, scaglie di grana e aceto balsamico.</p>
 </div></div></section>
+
+<section id="orari"><div class="wrap">
+<h2>Orari di apertura</h2>
+<p class="lead">Aperti tutti i giorni, tranne il martedì.</p>
+<table class="hours">
+<tr><th scope="row">Lunedì</th><td>12:00–14:00 · 18:00–22:00</td></tr>
+<tr class="off"><th scope="row">Martedì</th><td>Chiuso</td></tr>
+<tr><th scope="row">Mercoledì</th><td>12:00–14:00 · 18:00–22:00</td></tr>
+<tr><th scope="row">Giovedì</th><td>12:00–14:00 · 18:00–22:00</td></tr>
+<tr><th scope="row">Venerdì</th><td>12:00–14:00 · 18:00–22:00</td></tr>
+<tr><th scope="row">Sabato</th><td>18:00–22:00</td></tr>
+<tr><th scope="row">Domenica</th><td>18:00–22:00</td></tr>
+</table>
+</div></section>
 
 <section id="dove"><div class="wrap info">
 <div><h3>Dove siamo</h3><p>Apri la mappa per le indicazioni stradali dal punto in cui ti trovi.</p><a class="btn dark-btn" href="https://maps.app.goo.gl/1ajZG5nMYtKJkf3G9" target="_blank" rel="noopener">Apri su Google Maps</a></div>
